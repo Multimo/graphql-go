@@ -4,14 +4,9 @@ package graphql_go
 
 import (
 	context "context"
-	"fmt"
-	"math/rand"
 )
 
-// Resolver the revovler
-type Resolver struct {
-	todos []Todo
-}
+type Resolver struct{}
 
 func (r *Resolver) Mutation() MutationResolver {
 	return &mutationResolver{r}
@@ -19,30 +14,24 @@ func (r *Resolver) Mutation() MutationResolver {
 func (r *Resolver) Query() QueryResolver {
 	return &queryResolver{r}
 }
-func (r *Resolver) Todo() TodoResolver {
-	return &todoResolver{r}
-}
 
 type mutationResolver struct{ *Resolver }
 
-func (r *mutationResolver) CreateTodo(ctx context.Context, input NewTodo) (Todo, error) {
-	todo := Todo{
-		Text:   input.Text,
-		ID:     fmt.Sprintf("T%d", rand.Int()),
-		UserID: input.UserID,
-	}
-	r.todos = append(r.todos, todo)
-	return todo, nil
+func (r *mutationResolver) CreateJob(ctx context.Context, input NewJob) (Job, error) {
+	panic("not implemented")
+}
+func (r *mutationResolver) DeleteJob(ctx context.Context, id string) (string, error) {
+	panic("not implemented")
+}
+func (r *mutationResolver) CreateApplication(ctx context.Context, input NewApplication) (Application, error) {
+	panic("not implemented")
 }
 
 type queryResolver struct{ *Resolver }
 
-func (r *queryResolver) Todos(ctx context.Context) ([]Todo, error) {
-	return r.todos, nil
+func (r *queryResolver) Jobs(ctx context.Context) ([]Job, error) {
+	panic("not implemented")
 }
-
-type todoResolver struct{ *Resolver }
-
-func (r *todoResolver) User(ctx context.Context, obj *Todo) (User, error) {
-	return User{ID: obj.UserID, Name: "user " + obj.UserID}, nil
+func (r *queryResolver) Applications(ctx context.Context, jobID string) ([]Application, error) {
+	panic("not implemented")
 }
