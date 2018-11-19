@@ -1,12 +1,12 @@
 package main
 
 import (
-	graphql_go "graphql-go"
 	log "log"
 	http "net/http"
 	os "os"
 
 	handler "github.com/99designs/gqlgen/handler"
+	graphql_go "github.com/Multimo/graphql-go"
 )
 
 const defaultPort = "8080"

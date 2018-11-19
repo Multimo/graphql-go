@@ -1,29 +1,18 @@
-schema: schema.graphql
+# .gqlgen.yml example
+#
+# Refer to https://gqlgen.com/config/
+# for detailed .gqlgen.yml documentation.
 
-# Let gqlgen know where to put the generated server
+schema:
+- schema.graphql
 exec:
-  filename: graph/generated.go
-  package: graph
-
-# Let gqlgen know where to the generated models (if any)
+  filename: generated.go
 model:
-  filename: models/inputs.go
-  package: models
-
-# Optional, turns on resolver stub generation
+  filename: models_gen.go
 resolver:
-  filename: resolver.go # where to write them
-  type: Resolver  # whats the resolver root implementation type called?
+  filename: resolver.go
+  type: Resolver
 
-# Tell gqlgen about any existing models you want to reuse for
-# graphql. These normally come from the db or a remote api.
 models:
-  Job:
-    model: github.com/multimo/graphql-go/models.Job
-  Application:
-    model: github.com/multimo/graphql-go/models.Application
-  User:
-    model: github.com/multimo/graphql-go/models.User
-  # Custom scalars point to the name without the Marshal|Unmarshal in front
-  Timestamp:
-model: github.com/multimo/graphql-go/models.Timestamp
+  Todo:
+    model: github.com/Multimo/graphql-go.Todo
